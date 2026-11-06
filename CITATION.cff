@@ -7,6 +7,7 @@ abstract: >-
   execution. The project documents which parts are replicated from observation,
   which are inferred, and which are substituted with original designs.
 version: "0.2.3"
+date-released: "2026-11-06"
 license: "MIT"
 repository-code: "https://github.com/eli941280-droid/disk-doctor-reference"
 url: "https://github.com/eli941280-droid/disk-doctor-reference"
