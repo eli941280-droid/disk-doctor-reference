@@ -1,0 +1,27 @@
+# Conda environment for disk-doctor-reference.
+#
+# pyproject.toml is the single source of truth for project dependencies;
+# this file only pins the interpreter and the toolchain used for development.
+# Keep them in sync by adding a dependency in exactly one place: pyproject.toml
+# (runtime) or the `dev` extra (tooling).
+#
+#   conda env create --file environment.yml
+#   conda activate D:\conda_envs\disk-doctor-reference   # or the path you use
+#   pip install -e ".[dev,llm]"
+
+name: disk-doctor-reference
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip>=24
+  - pip:
+      # Mirrors the runtime dependencies in pyproject.toml. `pip install -e .`
+      # below is still the authoritative step; this list only avoids a broken
+      # environment if someone stops after conda.
+      - pydantic>=2.6
+      - send2trash>=1.8
+      - python-dotenv>=1.0
+      - portalocker>=2.8
+      - pytest>=8.0
+      - ruff>=0.5

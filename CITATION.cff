@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Disk Doctor Reference"
+abstract: >-
+  An independent, safety-oriented AI Agent reference implementation based on
+  observable behavior, deterministic policy enforcement, and constrained
+  execution. The project documents which parts are replicated from observation,
+  which are inferred, and which are substituted with original designs.
+version: "0.2.3"
+license: "MIT"
+repository-code: "https://github.com/eli941280-droid/disk-doctor-reference"
+url: "https://github.com/eli941280-droid/disk-doctor-reference"
+authors:
+  - name: "eli941280-droid"
+keywords:
+  - agent
+  - llm
+  - disk-cleanup
+  - safety
+  - reference-implementation
+  - clean-room

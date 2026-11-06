@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "disk-doctor-reference"
+version = "0.2.3"
+description = "A clean-room reference implementation of a disk-health agent, reconstructed from publicly observable behavior of the Disk Doctor expert."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "eli941280-droid" }]
+keywords = ["agent", "llm", "disk-cleanup", "safety", "reference-implementation"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Topic :: System :: Systems Administration",
+]
+dependencies = [
+    "pydantic>=2.6",
+    "send2trash>=1.8",
+    "python-dotenv>=1.0",
+    # Cross-process execution lock. Without it the agent refuses to execute
+    # (fail closed), so it is a runtime requirement, not an optional extra.
+    "portalocker>=2.8",
+]
+
+[project.optional-dependencies]
+llm = ["openai>=1.30"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+disk-doctor = "disk_doctor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "BLE", "RUF"]
+ignore = [
+    "RUF001", # ambiguous unicode: Chinese text is the point, not a typo
+    "RUF002",
+    "RUF003",
+    # Keep the explicit (str, Enum) mixin: it serialises predictably under
+    # pydantic and behaves the same on 3.11 through 3.13.
+    "UP042",
+]
